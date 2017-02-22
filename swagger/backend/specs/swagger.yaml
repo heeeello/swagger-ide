@@ -1,0 +1,109 @@
+swagger: '2.0'
+info:
+  description:
+    This is a __sample__ description of a RESTful-API with x-chance specs for the Swagger Mock API.
+  version: 1.0.0
+  title: RESTful API
+  contact:
+    name: tobias.cabrera@ondics.de
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+# SPECIFY YOUR DOCKER IP AS HOST AND THE PORT WHICH IS MAPPED TO PORT 8000
+# host: [Docker-IP]:[PORT MAPPED TO PORT 8000]
+host: 192.168.99.100:8000
+schemes:
+  - http
+  - https
+paths:
+  /:
+    get:
+      tags:
+        - Info
+      summary: Get information about the API and its Endpoints
+      operationId: getApiInfo
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Info'
+        401:
+          description: Not authorized
+  /log:
+    get:
+      tags:
+        - Log
+      summary: Get the log file
+      operationId: getLog
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Log'
+        401:
+          description: Not authorized
+definitions:
+  Log:
+    type: object
+    properties:
+      LogID:
+        type: number
+        x-chance-type: natural
+        x-type-options:
+          min: 1000
+          max: 3000
+        format: int32
+      Level:
+        type: string
+        x-chance-type: fixed
+        x-type-value: 'INFO'
+        maxLength: 255
+      No:
+        type: number
+        x-chance-type: natural
+        x-type-options:
+          min: 100
+          max: 500 
+        format: int32
+      Text:
+        type: string
+        x-chance-type: sentence
+        maxLength: 255
+      DeviceID:
+        type: number
+        x-chance-type: natural
+        x-type-options:
+          min: 1
+          max: 20
+        format: int32
+      Timestamp:
+        type: string
+        x-chance-type: date
+        format: date-time
+  Info:
+    type: object
+    properties:
+      info:
+        type: string
+        x-chance-type: sentence
+      _links:
+        type: array
+        items:
+          $ref: '#/definitions/Link'
+  Link:
+    type: object
+    properties:
+      rel:
+        type: string
+        x-chance-type: word
+      href:
+        type: string
+        x-chance-type: url
+
+      
+
+ 
