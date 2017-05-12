@@ -12,4 +12,6 @@ if [[ ! -f $SWAGGER_FILE ]]; then
   chown -R www-data:www-data /var/www/html/swagger/backend/specs/
 fi
 
+cd /var/www/html/swagger-mock-api
+
 service apache2 restart && grunt
