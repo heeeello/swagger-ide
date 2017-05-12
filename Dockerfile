@@ -21,11 +21,14 @@ RUN chmod -R 777 /var/www/html/swagger/backend
 ADD swagger-mock-api/Gruntfile.js /var/www/html/swagger-mock-api/Gruntfile.js
 ADD swagger-mock-api/package.json /var/www/html/swagger-mock-api/package.json
 
-WORKDIR /var/www/html/swagger-mock-api
 
-RUN npm install
 
+RUN cd /var/www/html/swagger-mock-api &&  npm install
+
+WORKDIR /var/www/html/
 
 VOLUME /var/www/html/swagger/backend/specs/
 
-ENTRYPOINT  chmod -R www-data:www-data /var/www/html/swagger/backend/specs/ && service apache2 restart && grunt
+ADD entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT  /entrypoint.sh
