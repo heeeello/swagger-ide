@@ -26,4 +26,6 @@ WORKDIR /var/www/html/swagger-mock-api
 RUN npm install
 
 
-ENTRYPOINT service apache2 restart && grunt
+VOLUME /var/www/html/swagger/backend/specs/
+
+ENTRYPOINT  chmod -R www-data:www-data /var/www/html/swagger/backend/specs/ && service apache2 restart && grunt
