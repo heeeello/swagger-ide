@@ -6,7 +6,8 @@ RUN apt-get install -y nodejs
 RUN npm install -g bower grunt-cli && \
 echo '{ "allow_root": true }' > /root/.bowerrc
 
-RUN a2enmod headers
+# Enable http_proxy, because grunt will listen to port 8000, I want to proxy it to 80 port of apache2 
+RUN a2enmod headers proxy_http
 
 ADD conf/000-default.conf /etc/apache2/sites-enabled/000-default-conf
 ADD conf/apache2.conf /etc/apache2/apache2.conf
@@ -24,7 +25,5 @@ WORKDIR /var/www/html/swagger-mock-api
 
 RUN npm install
 
-# Enable http_proxy, because grunt will listen to port 8000, I want to proxy it to 80 port of apache2 
-RUN a2enmod a2enmod proxy_http
 
 ENTRYPOINT service apache2 restart && grunt
