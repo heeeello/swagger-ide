@@ -11,6 +11,7 @@ RUN a2enmod headers
 ADD conf/000-default.conf /etc/apache2/sites-enabled/000-default-conf
 ADD conf/apache2.conf /etc/apache2/apache2.conf
 
+ADD index.html /var/www/html/index.html
 ADD swagger /var/www/html/swagger
 ADD swagger-ui /var/www/html/swagger-ui
 
@@ -23,6 +24,7 @@ WORKDIR /var/www/html/swagger-mock-api
 
 RUN npm install
 
-EXPOSE 8000
+# Enable http_proxy, because grunt will listen to port 8000, I want to proxy it to 80 port of apache2 
+RUN a2enmod a2enmod proxy_http
 
 ENTRYPOINT service apache2 restart && grunt

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <!--
+    Modified from the Debian original for Ubuntu
+    Last updated: 2014-03-19
+    See: https://launchpad.net/bugs/1288690
+  -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Swagger IDE: It works</title>
+    <style type="text/css" media="screen">
+
+
+    </style>
+  </head>
+  <body>
+      <div >
+        <h2>
+          Swagger IDE
+        </h2>
+      </div>
+      <div>
+      </div>
+      <div >
+         <ol>
+            <li>
+              <a href="swagger" > Swagger Editor </a>
+            </li>
+            <li>
+            <a href="swagger-ui"> Swagger UI</a>
+            </li>
+            <li>
+            <a href="mock"> Swagger Mock API</a>  
+            <p> You can use <a id='base_url' href="mock"> http://$url:$port/mock </a> to test Swagger Mock Api </p>
+            </li>
+  </ol> 
+     </div>
+<script> 
+
+  window.onload = function() {
+    document.getElementById('base_url').href=window.location.href + "/mock"
+    document.getElementById('base_url').innerHTML=window.location.href + "/mock"
+
+  };  
+
+</script>
+  </body>
+</html>
+
+
