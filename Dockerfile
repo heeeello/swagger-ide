@@ -18,14 +18,13 @@ ADD swagger-ui /var/www/html/swagger-ui
 
 RUN chmod -R 777 /var/www/html/swagger/backend
 
-ADD swagger-mock-api/Gruntfile.js /var/www/html/swagger-mock-api/Gruntfile.js
-ADD swagger-mock-api/package.json /var/www/html/swagger-mock-api/package.json
-
-
-
-RUN cd /var/www/html/swagger-mock-api &&  npm install
+# ADD swagger-mock-api/Gruntfile.js /var/www/html/swagger-mock-api/Gruntfile.js
+# ADD swagger-mock-api/package.json /var/www/html/swagger-mock-api/package.json
+# RUN cd /var/www/html/swagger-mock-api &&  npm install
 
 WORKDIR /var/www/html/
+
+RUN curl https://raw.githubusercontent.com/stoplightio/prism/master/install.sh | sh
 
 VOLUME /var/www/html/swagger/backend/specs/
 

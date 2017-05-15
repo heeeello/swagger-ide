@@ -9,9 +9,13 @@ SWAGGER_EXAMPLE_FILE=/var/www/html/swagger/backend/swagger.example.yaml
 
 if [[ ! -f $SWAGGER_FILE ]]; then
   cp -fv $SWAGGER_EXAMPLE_FILE $SWAGGER_FILE
-  chown -R www-data:www-data /var/www/html/swagger/backend/specs/
 fi
 
-cd /var/www/html/swagger-mock-api
+chmod -R 777 /var/www/html/swagger/backend/specs/
 
-service apache2 restart && grunt
+cd /var/www/html/
+
+
+nohup prism run --port 8000 --mockDynamic --list --spec  $SWAGGER_FILE  > prism.log 2>&1 &
+
+service apache2 restart  && tail -F grunt.log /var/log/apache2/*
