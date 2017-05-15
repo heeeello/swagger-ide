@@ -18,4 +18,4 @@ cd /var/www/html/
 
 nohup prism run --port 8000 --mockDynamic --list --spec  $SWAGGER_FILE  > prism.log 2>&1 &
 
-service apache2 restart  && tail -F grunt.log /var/log/apache2/*
+service apache2 restart  && tail -F /var/www/html/prism.log /var/log/apache2/*
