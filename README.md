@@ -1,5 +1,22 @@
 ## Swagger-IDE
 
+Swagger mock is now using stoplight's prism as follows:
+```
+prism run --cors -d --mock -p 8000 -s /var/www/html/swagger/backend/specs/swagger.yaml -c $PRISM_CFG_FILE 
+```
+
+PRISM_CFG_FILE: /var/www/html/prism.cfg
+The file is used to hot reload swagger file after swagger.yaml is changed.
+The file contents:
+```
+{"updatedAt": "0"}
+```
+Each time swagger.yaml is rewritten, the file will be updated accordingly
+
+
+
+### Original README
+
 The Swagger-UI and Swagger-Mock-API always use the current YAML of the Swagger-Editor. Also the Swagger-Editor saves the current YAML locally. So everything is persistence and stays up to date.
 
 
