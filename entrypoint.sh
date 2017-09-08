@@ -20,7 +20,7 @@ chmod -R 777 /var/www/html/swagger/backend/specs/
 
 cd /var/www/html/
 
-
-nohup prism run --cors -d --mock -p 8000 -s /var/www/html/swagger/backend/specs/swagger.yaml -c $PRISM_CFG_FILE > prism.log 2>&1 &
+# Currently not use Mock
+# nohup prism run --cors -d --mock -p 8000 -s /var/www/html/swagger/backend/specs/swagger.yaml -c $PRISM_CFG_FILE > prism.log 2>&1 &
 
 service apache2 restart  && tail -F /var/www/html/prism.log /var/log/apache2/*

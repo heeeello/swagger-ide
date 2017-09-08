@@ -1,5 +1,11 @@
 ## Swagger-IDE
 
+
+### How to replace newly built swagger ui
+1. replace swagger-ui directory with newly build swagger-ui/dists directory
+2. git checkout index.html
+
+
 Swagger mock is now using stoplight's prism as follows:
 ```
 prism run --cors -d --mock -p 8000 -s /var/www/html/swagger/backend/specs/swagger.yaml -c $PRISM_CFG_FILE 
